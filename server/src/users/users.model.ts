@@ -63,6 +63,26 @@ export class User extends Model<User, UserCreationAttribute> {
   })
   banReason: string;
 
+  @ApiProperty({
+    example: 'true',
+    description: 'Did user follow activation link from email',
+  })
+  @Column({
+    type: DataType.BOOLEAN,
+    defaultValue: false,
+  })
+  isActivated: boolean;
+
+  @ApiProperty({
+    example: 'randomactivationlink',
+    description: 'Part of the activation link',
+  })
+  @Column({
+    type: DataType.STRING,
+    allowNull: false,
+  })
+  activationLink: string;
+
   @BelongsToMany(() => Role, () => UserRoles)
   roles: Role[];
 }

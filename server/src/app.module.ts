@@ -4,6 +4,11 @@ import { AuthModule } from './auth/auth.module';
 import { SequelizeModule } from '@nestjs/sequelize';
 import { UsersModule } from './users/users.module';
 import { RolesModule } from './roles/roles.module';
+import { TokensModule } from './tokens/tokens.module';
+import { User } from './users/users.model';
+import { Token } from './tokens/tokens.model';
+import { Role } from './roles/roles.model';
+import { UserRoles } from './roles/user-roles.model';
 
 @Module({
   imports: [
@@ -18,13 +23,14 @@ import { RolesModule } from './roles/roles.module';
       password: process.env.POSTGRES_PASSWORD,
       database: process.env.POSTGRES_DB,
       // models in DB
-      models: [],
+      models: [User, Token, Role, UserRoles],
       //   для создания в БД моделей которые мы опишем
       autoLoadModels: true,
     }),
     AuthModule,
     UsersModule,
     RolesModule,
+    TokensModule,
   ],
   controllers: [],
   providers: [],

@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/sequelize';
 import { User } from './users.model';
-import { createUserDto } from './dto/create-user.dto';
+import { createUserDto, userModelDto } from './dto/create-user.dto';
 
 @Injectable()
 export class UsersService {
@@ -12,7 +12,7 @@ export class UsersService {
     return users;
   }
 
-  async createUser(dto: createUserDto) {
+  async createUser(dto: userModelDto) {
     const user = await this.UserRepository.create(dto);
     return user;
   }
